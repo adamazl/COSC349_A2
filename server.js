@@ -11,7 +11,7 @@ const pool = mysql.createPool({
     host: 'database-1.crebsosieeok.us-east-1.rds.amazonaws.com',
     user: 'admin',
     password: 'Quack1nce4^',
-    database: 'recipes_db'
+    database: 'database-1'
 });
 
 
