@@ -36,8 +36,6 @@ Nginx serves as the web server, directing traffic and enabling communication bet
 For comprehensive installation instructions and additional information about these software components, please refer to their official websites.
 
 ### Sources:
-https://docs.aws.amazon.com/lambda/latest/dg/with-s3-tutorial.html  
-https://docs.aws.amazon.com/AmazonS3/latest/userguide/tutorial-s3-object-lambda-uppercase.html  
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html  
 https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.MySQL.html  
 https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateWebServer.html  
