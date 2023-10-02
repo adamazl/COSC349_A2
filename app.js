@@ -9,22 +9,26 @@ function addRecipe(event) {
     const recipeIngredients = document.getElementById('recipeIngredients').value.trim();
     const recipeInstructions = document.getElementById('recipeInstructions').value.trim();
 
-    if (recipeTitle !== '' && recipeIngredients !== '' && recipeInstructions !== '') {
-        const recipe = {
+    fetch('http://54.162.23.228:3000/addRecipe', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
             title: recipeTitle,
             ingredients: recipeIngredients,
             instructions: recipeInstructions,
-        };
-
-        recipes.push(recipe);
-        displayRecipes();
-
-        // Reset form fields
-        document.getElementById('recipeTitle').value = '';
-        document.getElementById('recipeIngredients').value = '';
-        document.getElementById('recipeInstructions').value = '';
-    }
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Fetch and display updated recipes
+            displayRecipes();
+        }
+    });
 }
+
 
 // Function to display recipes
 function displayRecipes() {
