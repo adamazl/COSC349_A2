@@ -20,25 +20,34 @@ function addRecipe(event) {
             instructions: recipeInstructions,
         }),
     })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
-                // Fetch and display updated recipes
-                displayRecipes();
+                // Handle success
+            } else {
+                // Handle failure
             }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
         });
-}
 
 
-// Function to display recipes
-function displayRecipes() {
-    const recipesContainer = document.getElementById('recipes');
-    recipesContainer.innerHTML = '';
 
-    recipes.forEach((recipe, index) => {
-        const recipeElement = document.createElement('div');
-        recipeElement.className = 'recipe';
-        recipeElement.innerHTML = `
+    // Function to display recipes
+    function displayRecipes() {
+        const recipesContainer = document.getElementById('recipes');
+        recipesContainer.innerHTML = '';
+
+        recipes.forEach((recipe, index) => {
+            const recipeElement = document.createElement('div');
+            recipeElement.className = 'recipe';
+            recipeElement.innerHTML = `
             <h3>${recipe.title}</h3>
             <h4>Ingredients:</h4>
             <p>${recipe.ingredients}</p>
@@ -46,34 +55,34 @@ function displayRecipes() {
             <p>${recipe.instructions}</p>
             <button onclick="deleteRecipe(${index})">Delete</button>
         `;
-        recipesContainer.appendChild(recipeElement);
-    });
-}
-
-// Function to delete a recipe
-function deleteRecipe(index) {
-    fetch(`http://54.162.23.228 :3000/deleteRecipe/${index}`, {
-        method: 'DELETE',
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Fetch and display updated recipes
-                displayRecipes();
-            }
+            recipesContainer.appendChild(recipeElement);
         });
+    }
+
+    // Function to delete a recipe
+    function deleteRecipe(index) {
+        fetch(`http://54.162.23.228 :3000/deleteRecipe/${index}`, {
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Fetch and display updated recipes
+                    displayRecipes();
+                }
+            });
+    }
+
+
+    // Event listener for the recipe submission
+    document.getElementById('recipeForm').addEventListener('submit', addRecipe);
+
+    // Initial display of recipes
+    function displayRecipes() {
+        fetch('http://54.162.23.228:3000/getRecipes')
+            .then(response => response.json())
+            .then(data => {
+                // Display recipes as before but using the fetched data
+            });
+    }
 }
-
-
-// Event listener for the recipe submission
-document.getElementById('recipeForm').addEventListener('submit', addRecipe);
-
-// Initial display of recipes
-function displayRecipes() {
-    fetch('http://54.162.23.228:3000/getRecipes')
-        .then(response => response.json())
-        .then(data => {
-            // Display recipes as before but using the fetched data
-        });
-}
-
