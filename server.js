@@ -20,6 +20,33 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // TODO: Add routes here
+// Add a new recipe
+app.post('/addRecipe', (req, res) => {
+    const { title, ingredients, instructions } = req.body;
+    const query = 'INSERT INTO recipes (title, ingredients, instructions) VALUES (?, ?, ?)';
+    pool.query(query, [title, ingredients, instructions], (error) => {
+        if (error) throw error;
+        res.send({ success: true });
+    });
+});
+
+// Fetch all recipes
+app.get('/getRecipes', (req, res) => {
+    pool.query('SELECT * FROM recipes', (error, results) => {
+        if (error) throw error;
+        res.send(results);
+    });
+});
+
+// Delete a recipe
+app.delete('/deleteRecipe/:id', (req, res) => {
+    const recipeId = req.params.id;
+    pool.query('DELETE FROM recipes WHERE id = ?', [recipeId], (error) => {
+        if (error) throw error;
+        res.send({ success: true });
+    });
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
