@@ -15,7 +15,10 @@ const pool = mysql.createPool({
 });
 
 
-app.use(cors());
+// Allow requests from the frontend domain or IP
+app.use(cors({
+    origin: 'http://54.165.213.235',
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
