@@ -20,13 +20,13 @@ function addRecipe(event) {
             instructions: recipeInstructions,
         }),
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Fetch and display updated recipes
-            displayRecipes();
-        }
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Fetch and display updated recipes
+                displayRecipes();
+            }
+        });
 }
 
 
@@ -60,4 +60,11 @@ function deleteRecipe(index) {
 document.getElementById('recipeForm').addEventListener('submit', addRecipe);
 
 // Initial display of recipes
-displayRecipes();
+function displayRecipes() {
+    fetch('http://54.162.23.228:3000/getRecipes')
+        .then(response => response.json())
+        .then(data => {
+            // Display recipes as before but using the fetched data
+        });
+}
+
