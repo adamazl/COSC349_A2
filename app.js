@@ -52,9 +52,18 @@ function displayRecipes() {
 
 // Function to delete a recipe
 function deleteRecipe(index) {
-    recipes.splice(index, 1);
-    displayRecipes();
+    fetch(`http://54.162.23.228 :3000/deleteRecipe/${index}`, {
+        method: 'DELETE',
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Fetch and display updated recipes
+                displayRecipes();
+            }
+        });
 }
+
 
 // Event listener for the recipe submission
 document.getElementById('recipeForm').addEventListener('submit', addRecipe);
