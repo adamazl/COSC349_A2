@@ -1,5 +1,8 @@
+## Introduction
+This is my Recipe Management System. It is an app where users are able to upload full recipes, including ingredients and steps onto a database. The recipe can be saved and deleted. This app will be useful for experimental chefs who would love to share their recipes online.
+
 ## Components
-This is a list of software dependencies needed to run my Recipe Sharing application.
+This is a list of software dependencies needed to run the application.
 
 ### Frontend
 
