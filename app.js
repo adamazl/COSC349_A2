@@ -32,12 +32,7 @@ function addRecipe(event) {
             } else {
                 // Handle failure
             }
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
         });
-
-
 
     // Function to display recipes
     function displayRecipes() {
@@ -61,7 +56,7 @@ function addRecipe(event) {
 
     // Function to delete a recipe
     function deleteRecipe(index) {
-        fetch(`http://54.162.23.228 :3000/deleteRecipe/${index}`, {
+        fetch(`http://54.162.23.228:3000/deleteRecipe/${index}`, {
             method: 'DELETE',
         })
             .then(response => response.json())
